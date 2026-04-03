@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bookings.inventoryservice.entity.Event;
+import com.bookings.inventoryservice.entity.Venue;
 import com.bookings.inventoryservice.repository.EventRepository;
 import com.bookings.inventoryservice.repository.VenueRepository;
 import com.bookings.inventoryservice.response.EventInventoryResponse;
+import com.bookings.inventoryservice.response.VenueInventoryResponse;
 
 /**
  * InventoryService
@@ -34,6 +36,16 @@ public class InventoryService {
 				.capacity(event.getLeftCapacity())
 				.venue(event.getVenue())
 				.build()).collect(Collectors.toList());
+	}
+
+	public VenueInventoryResponse getVenueInfo(Long venueId) {
+		final Venue venue = venueRepository.findById(venueId).orElse(null);
+
+		return VenueInventoryResponse.builder()
+				.venueId(venue.getId())
+				.venueName(venue.getName())
+				.totalCapacity(venue.getTotalCapacity())
+				.build();
 	}
 
 }
