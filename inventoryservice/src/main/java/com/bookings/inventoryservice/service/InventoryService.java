@@ -13,10 +13,13 @@ import com.bookings.inventoryservice.repository.VenueRepository;
 import com.bookings.inventoryservice.response.EventInventoryResponse;
 import com.bookings.inventoryservice.response.VenueInventoryResponse;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * InventoryService
  */
 @Service
+@Slf4j
 public class InventoryService {
 
 	private final EventRepository eventRepository;
@@ -62,6 +65,18 @@ public class InventoryService {
 				.ticketPrice(event.getTicketPrice())
 				.eventId(event.getId())
 				.build();
+	}
+
+	public void updateEventCapacity(Long eventId, Long capacity) {
+		final Event event = eventRepository.findById(eventId).orElse(null);
+		if (event == null) {
+			throw new RuntimeException("Event not found with id: " + eventId);
+		}
+
+		event.setLeftCapacity(event.getLeftCapacity() - capacity);
+		eventRepository.saveAndFlush(event);
+
+		log.info("Updated event capacity for eventId: {}, new capacity: {}", eventId, event.getLeftCapacity());
 	}
 
 }

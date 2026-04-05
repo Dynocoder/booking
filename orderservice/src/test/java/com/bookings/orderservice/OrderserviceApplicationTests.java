@@ -1,4 +1,5 @@
-package com.booking.orderservice;
+
+package com.bookings.orderservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

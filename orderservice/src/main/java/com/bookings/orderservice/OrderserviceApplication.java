@@ -1,4 +1,4 @@
-package com.booking.orderservice;
+package com.bookings.orderservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,11 +1,11 @@
 package com.bookings.bookingservice.event;
 
-import java.math.BigDecimal;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.math.BigDecimal;
 
 /**
  * BookingEvent
@@ -15,8 +15,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class BookingEvent {
-	private Long userId;
-	private Long eventId;
-	private Long ticketCount;
-	private BigDecimal totalPrice;
+  private Long userId;
+  private Long eventId;
+  private Long ticketCount;
+  private BigDecimal totalPrice;
 }

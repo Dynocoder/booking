@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 public class BookingResponse {
 	private Long userId;
 	private Long eventId;
-	private Integer ticketCount;
+	private Long ticketCount;
 	private BigDecimal totalPrice;
 
 }

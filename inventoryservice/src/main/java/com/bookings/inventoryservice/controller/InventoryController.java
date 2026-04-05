@@ -2,8 +2,10 @@ package com.bookings.inventoryservice.controller;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,5 +37,14 @@ public class InventoryController {
 	@GetMapping("/inventory/events/{eventId}")
 	public @ResponseBody EventInventoryResponse inventoryByEventId(@PathVariable("eventId") Long eventId) {
 		return inventoryService.getEventInfo(eventId);
+	}
+
+	@PutMapping("/inventory/events/{eventId}/capacity/{capacity}")
+	public ResponseEntity<Void> updateEventCapacity(
+			@PathVariable("eventId") Long event,
+			@PathVariable("capacity") Long capacity) {
+
+		inventoryService.updateEventCapacity(event, capacity);
+		return ResponseEntity.ok().build();
 	}
 }
